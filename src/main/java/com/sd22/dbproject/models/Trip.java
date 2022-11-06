@@ -1,13 +1,142 @@
 package com.sd22.dbproject.models;
 
+
+import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+@Entity
+@Table(name = "trips")
 public class Trip {
-/*      `trip_id` INT NOT NULL AUTO_INCREMENT,
-  `description` VARCHAR(500) NOT NULL,
-  `price` DECIMAL(9,2) NOT NULL,
-  `length` VARCHAR(255) NULL,
-  `title` VARCHAR(255) NOT NULL,
-  `availabilty` VARCHAR(255) NOT NULL,
-  `rating_total` DECIMAL(2,1) NULL,
-  `locations_location_id` INT NOT NULL,
-            `packages_package_id` INT NOT NULL,*/
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int tripId;
+    private String description;
+    private double price;
+    private String length;
+    private String title;
+    private String availabilty;
+    private double ratingTotal;
+
+    @ManyToOne
+    @JoinColumn(name = "locations_location_id")
+    private Location location;
+
+    @ManyToOne
+    @JoinColumn(name = "packages_package_id")
+    private TripPackage tripPackage;
+
+    @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
+    private List<Review> reviews;
+
+    //TODO - find cascade type!
+    //TODO - check if mappedby relation is correct!!
+    @ManyToMany(mappedBy = "trips")
+    @JoinTable(
+            name = "trip_tags",
+            joinColumns = @JoinColumn(name = "trips_trip_id", referencedColumnName = "trip_id"),
+            inverseJoinColumns = @JoinColumn(name = "tags_tag_id", referencedColumnName = "tag_id")
+            )
+
+    private Set<Tag> tags = new HashSet<>();
+
+    public Trip() {
+    }
+
+    public Trip(String description, double price, String length, String title, String availabilty, double ratingTotal) {
+        this.description = description;
+        this.price = price;
+        this.length = length;
+        this.title = title;
+        this.availabilty = availabilty;
+        this.ratingTotal = ratingTotal;
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public int getTripId() {
+        return tripId;
+    }
+
+    public void setTripId(int tripId) {
+        this.tripId = tripId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getLength() {
+        return length;
+    }
+
+    public void setLength(String length) {
+        this.length = length;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAvailabilty() {
+        return availabilty;
+    }
+
+    public void setAvailabilty(String availabilty) {
+        this.availabilty = availabilty;
+    }
+
+    public double getRatingTotal() {
+        return ratingTotal;
+    }
+
+    public void setRatingTotal(double ratingTotal) {
+        this.ratingTotal = ratingTotal;
+    }
+
+    @Override
+    public String toString() {
+        return "Trip{" +
+                "tripId=" + tripId +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", length='" + length + '\'' +
+                ", title='" + title + '\'' +
+                ", availabilty='" + availabilty + '\'' +
+                ", ratingTotal=" + ratingTotal +
+                '}';
+    }
 }

@@ -1,12 +1,14 @@
 package com.sd22.dbproject.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
-public class Package {
+@Table(name = "packages")
+public class TripPackage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int packageId;
@@ -15,13 +17,42 @@ public class Package {
     private double price;
     private double discount;
 
-    public Package() {
+    @OneToMany(mappedBy = "tripPackage", cascade = CascadeType.ALL)
+    private List<Trip> trips;
+
+    //TODO - find cascade type!
+    //TODO - check if mappedby relation is correct!!
+    @ManyToMany(mappedBy = "tripPackages")
+    @JoinTable(
+            name = "package_tags",
+            joinColumns = @JoinColumn(name = "packages_package_id", referencedColumnName = "package_id"),
+            inverseJoinColumns = @JoinColumn(name = "tags_tag_id", referencedColumnName = "tag_id"))
+
+    private Set<Tag> tags = new HashSet<>();
+
+    public TripPackage() {
     }
 
-    public Package(String description, double price, double discount) {
+    public TripPackage(String description, double price, double discount) {
         this.description = description;
         this.price = price;
         this.discount = discount;
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
+    }
+
+    public List<Trip> getTrips() {
+        return trips;
+    }
+
+    public void setTrips(List<Trip> trips) {
+        this.trips = trips;
     }
 
     public int getPackageId() {
