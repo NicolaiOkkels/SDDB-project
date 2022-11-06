@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 public class UserController {
     @Autowired
     private UserService userService;
 
     @RequestMapping("/allUsers")
     public List<User> getAllUsers(){
-        return userService.getAllUsers();
+        return userService.getUsers();
     }
 
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
