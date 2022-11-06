@@ -2,7 +2,6 @@ package com.sd22.dbproject.services;
 
 import com.sd22.dbproject.models.User;
 import com.sd22.dbproject.repositories.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +13,7 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
-    public List<User> getAllUsers() {
+    public List<User> getUsers() {
         List<User> users = new ArrayList<>();
         userRepository.findAll().forEach(users::add);
         return users;
