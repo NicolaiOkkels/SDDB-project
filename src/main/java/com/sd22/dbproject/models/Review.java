@@ -1,8 +1,8 @@
 package com.sd22.dbproject.models;
 
 import jakarta.persistence.*;
-
 import java.util.Date;
+
 @Entity
 public class Review {
     @Id

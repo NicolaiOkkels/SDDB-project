@@ -1,4 +1,10 @@
 package com.sd22.dbproject.repositories;
 
-public class TripRepository {
+import com.sd22.dbproject.models.Trip;
+import com.sd22.dbproject.models.User;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface TripRepository extends CrudRepository<Trip, Integer> {
 }

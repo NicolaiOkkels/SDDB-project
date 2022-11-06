@@ -1,7 +1,6 @@
 package com.sd22.dbproject.models;
 
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
