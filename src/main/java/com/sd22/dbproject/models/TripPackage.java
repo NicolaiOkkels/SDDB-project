@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Package {
+public class TripPackage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int packageId;
@@ -15,10 +15,10 @@ public class Package {
     private double price;
     private double discount;
 
-    public Package() {
+    public TripPackage() {
     }
 
-    public Package(String description, double price, double discount) {
+    public TripPackage(String description, double price, double discount) {
         this.description = description;
         this.price = price;
         this.discount = discount;
