@@ -1,9 +1,8 @@
 package com.sd22.dbproject.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Location {
@@ -14,11 +13,26 @@ public class Location {
 
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "countries_country_id")
+    private Country country;
+
+    @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
+    private List<Trip> trips;
+
     public Location() {
     }
 
     public Location(String name) {
         this.name = name;
+    }
+
+    public List<Trip> getTrips() {
+        return trips;
+    }
+
+    public void setTrips(List<Trip> trips) {
+        this.trips = trips;
     }
 
     public int getLocationId() {
