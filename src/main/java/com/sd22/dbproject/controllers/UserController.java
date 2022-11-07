@@ -27,8 +27,22 @@ public class UserController {
         userService.addUser(user);
     }
 
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
+/*    @RequestMapping(value = "/users", method = RequestMethod.GET)
     public User findUserById(@RequestParam int id) {
+        try {
+            User user = userService.findUserById(id).orElseThrow(UserNotFoundException::new);
+            if (user == null) {
+                return (User)ResponseEntity.status(HttpStatus.BAD_REQUEST);
+            } else {
+                return ResponseEntity.ok(user).getBody();
+            }
+        }catch(DataAccessException e){
+            return (User)ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }*/
+
+    @GetMapping("/users/{id}")
+    public User findUserById(@PathVariable int id) {
         try {
             User user = userService.findUserById(id).orElseThrow(UserNotFoundException::new);
             if (user == null) {
