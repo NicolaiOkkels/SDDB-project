@@ -19,7 +19,7 @@ public class Trip {
     private String length;
     private String title;
     private String availabilty;
-    private double ratingTotal;
+    private Double ratingTotal;
 
     @ManyToOne
     @JoinColumn(name = "locations_location_id")
@@ -35,24 +35,22 @@ public class Trip {
     //TODO - find cascade type!
     //TODO - check if mappedby relation is correct!!
     @ManyToMany(mappedBy = "trips")
-    @JoinTable(
-            name = "trip_tags",
-            joinColumns = @JoinColumn(name = "trips_trip_id", referencedColumnName = "trip_id"),
-            inverseJoinColumns = @JoinColumn(name = "tags_tag_id", referencedColumnName = "tag_id")
-            )
-
     private Set<Tag> tags = new HashSet<>();
 
     public Trip() {
     }
 
-    public Trip(String description, double price, String length, String title, String availabilty, double ratingTotal) {
+    public Trip(String description, double price, String length, String title, String availabilty, Double ratingTotal,
+                Location location, TripPackage tripPackage, List<Review> reviews) {
         this.description = description;
         this.price = price;
         this.length = length;
         this.title = title;
         this.availabilty = availabilty;
         this.ratingTotal = ratingTotal;
+        this.location = location;
+        this.tripPackage = tripPackage;
+        this.reviews = reviews;
     }
 
     public Set<Tag> getTags() {
@@ -119,11 +117,11 @@ public class Trip {
         this.availabilty = availabilty;
     }
 
-    public double getRatingTotal() {
+    public Double getRatingTotal() {
         return ratingTotal;
     }
 
-    public void setRatingTotal(double ratingTotal) {
+    public void setRatingTotal(Double ratingTotal) {
         this.ratingTotal = ratingTotal;
     }
 

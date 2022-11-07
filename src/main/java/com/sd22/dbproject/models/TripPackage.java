@@ -23,11 +23,6 @@ public class TripPackage {
     //TODO - find cascade type!
     //TODO - check if mappedby relation is correct!!
     @ManyToMany(mappedBy = "tripPackages")
-    @JoinTable(
-            name = "package_tags",
-            joinColumns = @JoinColumn(name = "packages_package_id", referencedColumnName = "package_id"),
-            inverseJoinColumns = @JoinColumn(name = "tags_tag_id", referencedColumnName = "tag_id"))
-
     private Set<Tag> tags = new HashSet<>();
 
     public TripPackage() {

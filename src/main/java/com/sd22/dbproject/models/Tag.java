@@ -15,17 +15,15 @@ public class Tag {
     @ManyToMany
     @JoinTable(
             name = "package_tags",
-            joinColumns = @JoinColumn(name = "tags_tag_id", referencedColumnName = "tag_id"),
-            inverseJoinColumns = @JoinColumn(name = "packages_package_id", referencedColumnName = "package_id"))
-
+            joinColumns = @JoinColumn(name = "tags_tag_id"),
+            inverseJoinColumns = @JoinColumn(name = "packages_package_id"))
     private List<TripPackage> tripPackages;
 
     @ManyToMany
     @JoinTable(
             name = "trip_tags",
-            joinColumns = @JoinColumn(name = "tags_tag_id", referencedColumnName = "tag_id"),
-            inverseJoinColumns = @JoinColumn(name = "trips_trip_id", referencedColumnName = "trip_id"))
-
+            joinColumns = @JoinColumn(name = "tags_tag_id"),
+            inverseJoinColumns = @JoinColumn(name = "trips_trip_id"))
     private List<Trip> trips;
 
     public Tag() {

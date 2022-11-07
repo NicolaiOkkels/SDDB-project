@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name ="locations")
 public class Location {
 
     @Id
@@ -17,7 +18,7 @@ public class Location {
     @JoinColumn(name = "countries_country_id")
     private Country country;
 
-    @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
     private List<Trip> trips;
 
     public Location() {
