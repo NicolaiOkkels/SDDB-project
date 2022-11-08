@@ -1,5 +1,6 @@
 package com.sd22.dbproject.services;
 
+import com.sd22.dbproject.models.Country;
 import com.sd22.dbproject.models.Location;
 import com.sd22.dbproject.repositories.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,8 @@ public class LocationService {
 
     public void deleteLocationById(int id) {
         locationRepository.deleteById(id);
+    }
+    public Location updateLocation(Location location){
+        return locationRepository.save(location);
     }
 }
