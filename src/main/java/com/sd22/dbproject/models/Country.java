@@ -1,8 +1,10 @@
 package com.sd22.dbproject.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name ="countries")
@@ -14,22 +16,27 @@ public class Country {
 
     private String name;
 
+    //parent forward
+    @JsonManagedReference
+    @JsonIgnore
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
-    private List<Location> locations;
+    private Set<Location> locations;
 
     public Country() {
     }
 
-    public Country(String name) {
+    public Country(String name, Set<Location> locations) {
+        this.countryId = countryId;
         this.name = name;
-    }
-
-    public List<Location> getLocations() {
-        return locations;
-    }
-
-    public void setLocations(List<Location> locations) {
         this.locations = locations;
+    }
+
+    public int getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(int countryId) {
+        this.countryId = countryId;
     }
 
     public String getName() {
@@ -40,8 +47,12 @@ public class Country {
         this.name = name;
     }
 
-    public int getCountryId() {
-        return countryId;
+    public Set<Location> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(Set<Location> locations) {
+        this.locations = locations;
     }
 
     @Override
@@ -49,6 +60,7 @@ public class Country {
         return "Country{" +
                 "countryId=" + countryId +
                 ", name='" + name + '\'' +
+                ", locations=" + locations +
                 '}';
     }
 }

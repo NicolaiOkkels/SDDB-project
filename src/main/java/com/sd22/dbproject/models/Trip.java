@@ -1,6 +1,8 @@
 package com.sd22.dbproject.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -21,6 +23,9 @@ public class Trip {
     private String availabilty;
     private Double ratingTotal;
 
+    //child backward
+    @JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "locations_location_id")
     private Location location;
