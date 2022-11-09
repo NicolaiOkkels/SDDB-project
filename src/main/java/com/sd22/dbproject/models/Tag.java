@@ -1,5 +1,8 @@
 package com.sd22.dbproject.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -19,11 +22,8 @@ public class Tag {
             inverseJoinColumns = @JoinColumn(name = "packages_package_id"))
     private List<TripPackage> tripPackages;
 
-    @ManyToMany
-    @JoinTable(
-            name = "trip_tags",
-            joinColumns = @JoinColumn(name = "tags_tag_id"),
-            inverseJoinColumns = @JoinColumn(name = "trips_trip_id"))
+    @JsonBackReference
+    @ManyToMany(mappedBy = "tripTags", fetch = FetchType.LAZY)
     private List<Trip> trips;
 
     public Tag() {
@@ -35,10 +35,6 @@ public class Tag {
 
     public List<Trip> getTrips() {
         return trips;
-    }
-
-    public void setTrips(List<Trip> trips) {
-        this.trips = trips;
     }
 
     public List<TripPackage> getTripPackages() {

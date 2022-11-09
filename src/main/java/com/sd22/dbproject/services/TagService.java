@@ -1,5 +1,6 @@
 package com.sd22.dbproject.services;
 
+import com.sd22.dbproject.models.Country;
 import com.sd22.dbproject.models.Tag;
 import com.sd22.dbproject.repositories.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,9 @@ public class TagService {
 
     public void deleteTagById(int id) {
         tagRepository.deleteById(id);
+    }
+
+    public Tag updateTag(Tag tag){
+        return tagRepository.save(tag);
     }
 }

@@ -3,6 +3,7 @@ package com.sd22.dbproject.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -37,10 +38,13 @@ public class Trip {
     @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
-    //TODO - find cascade type!
-    //TODO - check if mappedby relation is correct!!
-    @ManyToMany(mappedBy = "trips")
-    private Set<Tag> tags = new HashSet<>();
+    @JsonManagedReference
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "trip_tags",
+            joinColumns = @JoinColumn(name = "trips_trip_id"),
+            inverseJoinColumns = @JoinColumn(name = "tags_tag_id"))
+    private Set<Tag> tripTags;
 
     public Trip() {
     }
@@ -59,11 +63,11 @@ public class Trip {
     }
 
     public Set<Tag> getTags() {
-        return tags;
+        return tripTags;
     }
 
     public void setTags(Set<Tag> tags) {
-        this.tags = tags;
+        this.tripTags = tags;
     }
 
     public List<Review> getReviews() {
