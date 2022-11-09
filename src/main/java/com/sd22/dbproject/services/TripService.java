@@ -1,5 +1,6 @@
 package com.sd22.dbproject.services;
 
+import com.sd22.dbproject.models.Tag;
 import com.sd22.dbproject.models.Trip;
 import com.sd22.dbproject.repositories.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class TripService {
         return trips;
     }
 
-    public void addUser(Trip trip) {
+    public void addTrip(Trip trip) {
         tripRepository.save(trip);
     }
 
@@ -30,5 +31,9 @@ public class TripService {
 
     public void deleteTripById(int id) {
         tripRepository.deleteById(id);
+    }
+
+    public Trip updateTrip(Trip trip){
+        return tripRepository.save(trip);
     }
 }
