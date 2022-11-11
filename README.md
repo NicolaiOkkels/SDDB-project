@@ -15,4 +15,4 @@
    - getRatingsByUser.sql
    - getTitleAndRating.sql
    - triggers.sql 
-   - trip_view.sql
+   - view.sql
