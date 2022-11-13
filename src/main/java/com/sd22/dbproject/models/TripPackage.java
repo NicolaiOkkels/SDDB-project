@@ -1,7 +1,7 @@
 package com.sd22.dbproject.models;
 
-import jakarta.persistence.*;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
