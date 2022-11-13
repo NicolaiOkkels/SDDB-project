@@ -1,6 +1,6 @@
 package com.sd22.dbproject.relational.services;
 
-import com.sd22.dbproject.relational.models.TripPackage;
+import com.sd22.dbproject.relational.entities.TripPackage;
 import com.sd22.dbproject.relational.repositories.TripPackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

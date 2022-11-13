@@ -1,4 +1,4 @@
-package com.sd22.dbproject.relational.models;
+package com.sd22.dbproject.relational.entities;
 
 import jakarta.persistence.*;
 import java.util.Date;

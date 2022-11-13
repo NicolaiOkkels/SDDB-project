@@ -1,7 +1,7 @@
 package com.sd22.dbproject.relational.services;
 
 import com.sd22.dbproject.relational.repositories.ReviewRepository;
-import com.sd22.dbproject.relational.models.Review;
+import com.sd22.dbproject.relational.entities.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

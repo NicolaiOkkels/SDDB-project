@@ -1,7 +1,7 @@
 package com.sd22.dbproject.relational.services;
 
 import com.sd22.dbproject.relational.repositories.TagRepository;
-import com.sd22.dbproject.relational.models.Tag;
+import com.sd22.dbproject.relational.entities.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

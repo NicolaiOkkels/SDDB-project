@@ -1,6 +1,6 @@
 package com.sd22.dbproject.relational.controllers;
 
-import com.sd22.dbproject.relational.models.Trip;
+import com.sd22.dbproject.relational.entities.Trip;
 import com.sd22.dbproject.relational.services.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

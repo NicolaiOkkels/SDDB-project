@@ -1,7 +1,7 @@
 package com.sd22.dbproject.relational.services;
 
 import com.sd22.dbproject.relational.repositories.UserRepository;
-import com.sd22.dbproject.relational.models.User;
+import com.sd22.dbproject.relational.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

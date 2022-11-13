@@ -1,4 +1,4 @@
-package com.sd22.dbproject.graph.models;
+package com.sd22.dbproject.graph.entities;
 
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;

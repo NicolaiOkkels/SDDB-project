@@ -1,6 +1,6 @@
 package com.sd22.dbproject.relational.controllers;
 
-import com.sd22.dbproject.relational.models.Tag;
+import com.sd22.dbproject.relational.entities.Tag;
 import com.sd22.dbproject.relational.services.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
