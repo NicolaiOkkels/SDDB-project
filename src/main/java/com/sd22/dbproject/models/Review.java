@@ -1,5 +1,8 @@
 package com.sd22.dbproject.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javax.persistence.*;
 import java.util.Date;
 
@@ -15,10 +18,12 @@ public class Review {
     private Date visitDate;
     private String text;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "user_user_id")
     private User user;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "trips_trip_id")
     private Trip trip;
@@ -26,11 +31,13 @@ public class Review {
     public Review() {
     }
 
-    public Review(String title, int rating, Date visitDate, String text) {
+    public Review(String title, int rating, Date visitDate, String text, User user, Trip trip) {
         this.title = title;
         this.rating = rating;
         this.visitDate = visitDate;
         this.text = text;
+        this.user = user;
+        this.trip = trip;
     }
 
     public int getReviewId() {
@@ -73,6 +80,22 @@ public class Review {
         this.text = text;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Trip getTrip() {
+        return trip;
+    }
+
+    public void setTrip(Trip trip) {
+        this.trip = trip;
+    }
+
     @Override
     public String toString() {
         return "Review{" +
@@ -81,6 +104,8 @@ public class Review {
                 ", rating=" + rating +
                 ", visitDate=" + visitDate +
                 ", text='" + text + '\'' +
+                ", user=" + user +
+                ", trip=" + trip +
                 '}';
     }
 }
