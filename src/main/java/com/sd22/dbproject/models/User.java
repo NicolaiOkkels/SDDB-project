@@ -1,5 +1,6 @@
 package com.sd22.dbproject.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public class User {
     private String email;
     private String password;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
