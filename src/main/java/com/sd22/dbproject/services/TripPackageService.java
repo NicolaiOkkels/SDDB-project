@@ -1,5 +1,6 @@
 package com.sd22.dbproject.services;
 
+import com.sd22.dbproject.models.Review;
 import com.sd22.dbproject.models.TripPackage;
 import com.sd22.dbproject.repositories.TripPackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,4 +32,9 @@ public class TripPackageService {
     public void deleteTripPackageById(int id) {
         tripPackageRepository.deleteById(id);
     }
+
+    public TripPackage updateTripPackage(TripPackage tripPackage){
+        return tripPackageRepository.save(tripPackage);
+    }
+
 }

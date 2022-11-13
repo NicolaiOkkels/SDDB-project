@@ -1,8 +1,6 @@
 package com.sd22.dbproject.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -24,8 +22,8 @@ public class Trip {
     private Double ratingTotal;
 
     //child backward
-    @JsonBackReference
-    @JsonIgnore
+    //@JsonBackReference
+    //@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "locations_location_id")
     private Location location;
@@ -34,10 +32,12 @@ public class Trip {
     @JoinColumn(name = "packages_package_id")
     private TripPackage tripPackage;
 
+    //@JsonIgnore
+    @JsonBackReference
     @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
-    @JsonManagedReference
+   // @JsonManagedReference
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             name = "trip_tags",
