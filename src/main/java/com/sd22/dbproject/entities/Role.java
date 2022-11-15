@@ -1,6 +1,7 @@
-package com.sd22.dbproject.models;
+package com.sd22.dbproject.entities;
 
-import jakarta.persistence.*;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "roles")

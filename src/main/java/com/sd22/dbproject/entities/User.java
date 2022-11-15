@@ -1,4 +1,4 @@
-package com.sd22.dbproject.models;
+package com.sd22.dbproject.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
@@ -34,6 +34,14 @@ public class User {
     public User(String email, String password) {
         this.email = email;
         this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public List<Review> getReviews() {

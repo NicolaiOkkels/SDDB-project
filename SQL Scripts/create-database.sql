@@ -82,12 +82,14 @@ CREATE TABLE `users` (
   `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE
-) ENGINE=InnoDB AUTO_INCREMENT = 5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT = 7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `users` VALUES (1, 'admin123@gmail.com', '12345', CURRENT_TIMESTAMP);
 INSERT INTO `users` VALUES (2, 'Lynn_Rehman5192@twipet.com', 'noonewillguessthis', CURRENT_TIMESTAMP);
 INSERT INTO `users` VALUES (3, 'Barry_Moore9181@nickia.com', 'notapassword', CURRENT_TIMESTAMP);
 INSERT INTO `users` VALUES (4, 'Bob_Bob123@live.dk', 'randomword', CURRENT_TIMESTAMP);
+INSERT INTO `users` VALUES (5, 'user', 'user', CURRENT_TIMESTAMP);
+INSERT INTO `users` VALUES (6, 'admin', 'admin', CURRENT_TIMESTAMP);
 
 CREATE TABLE `roles` (
     `role_id` INT NOT NULL AUTO_INCREMENT,

@@ -1,7 +1,6 @@
 package com.sd22.dbproject.controllers;
 
-import com.sd22.dbproject.models.Review;
-import com.sd22.dbproject.models.Trip;
+import com.sd22.dbproject.entities.Review;
 import com.sd22.dbproject.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,19 +17,19 @@ public class ReviewController {
     private ReviewService reviewService;
 
     //Get all reviews
-    @GetMapping("/reviews")
+    @GetMapping("/")
     public List<Review> getReview() {
         return reviewService.getReviews();
     }
 
     //Add a review
-    @PostMapping("/addReview")
+    @PostMapping("/add")
     public void addReview(@RequestBody Review review) {
         reviewService.addReview(review);
     }
 
     //Find review by id
-    @GetMapping("/review/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Optional<Review>> findReviewById(@PathVariable int id) {
         Optional<Review> review = reviewService.findReviewById(id);
         if (review.isEmpty()) {
@@ -41,7 +40,7 @@ public class ReviewController {
     }
 
     //DELETE review by id
-    @DeleteMapping("/review/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") int id) {
         Optional<Review> review = reviewService.findReviewById(id);
         if (review.isEmpty()) {
@@ -54,7 +53,7 @@ public class ReviewController {
     }
 
     //PUT,update review by id
-    @PutMapping("/review/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<String> update(@PathVariable("id") int id, @RequestBody Review requestReview) {
         Optional<Review> review = reviewService.findReviewById(id);
         if (review.isEmpty()) {

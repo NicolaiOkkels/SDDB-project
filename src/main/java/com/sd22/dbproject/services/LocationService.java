@@ -1,7 +1,6 @@
 package com.sd22.dbproject.services;
 
-import com.sd22.dbproject.models.Country;
-import com.sd22.dbproject.models.Location;
+import com.sd22.dbproject.entities.Location;
 import com.sd22.dbproject.repositories.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

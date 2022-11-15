@@ -1,4 +1,4 @@
-package com.sd22.dbproject.models;
+package com.sd22.dbproject.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
