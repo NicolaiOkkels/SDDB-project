@@ -1,6 +1,7 @@
 package com.sd22.dbproject.models;
 
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import javax.persistence.*;
 
 import java.util.HashSet;
 import java.util.List;
@@ -16,6 +17,7 @@ public class User {
     private String email;
     private String password;
 
+    @JsonBackReference
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",

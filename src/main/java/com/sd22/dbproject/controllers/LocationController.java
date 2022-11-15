@@ -13,25 +13,25 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/location")
+@RequestMapping("/api/locations")
 public class LocationController {
     @Autowired
     LocationService locationService;
 
     //Get all locations
-    @GetMapping("allLocations")
+    @GetMapping("/")
     public List<Location> getAllLocations(){
         return locationService.getLocations();
     }
 
     //Add a location
-    @PostMapping("/addLocation")
+    @PostMapping("/add")
     public void addLocation(@RequestBody Location location){
         locationService.addLocation(location);
     }
 
     //Get location by id
-    @GetMapping("/locations/{id}")
+    @GetMapping("/{id}")
     public Location findLocationById(@PathVariable int id) {
         try {
             Location location = locationService.findLocationById(id).orElseThrow(UserNotFoundException::new);
@@ -45,7 +45,7 @@ public class LocationController {
         }
     }
     //DELETE location by id
-    @DeleteMapping("/locations/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") int id) {
         Optional<Location> optionalLocation = locationService.findLocationById(id);
         if (!optionalLocation.isPresent()) {
@@ -56,7 +56,7 @@ public class LocationController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("{ 'msg' : 'deleted' }");
     }
     //PUT,update by id
-    @PutMapping("/locations/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<String> update(@PathVariable("id") int id, @RequestBody Location location) {
         Optional<Location> optionalLocation = locationService.findLocationById(id);
         if (!optionalLocation.isPresent()) {

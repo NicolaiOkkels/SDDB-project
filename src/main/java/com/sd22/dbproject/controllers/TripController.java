@@ -13,26 +13,26 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/trip")
+@RequestMapping("/api/trips")
 public class TripController {
 
     @Autowired
     private TripService tripService;
 
     //Get all trips
-    @GetMapping("/trips")
+    @GetMapping("/")
     public List<Trip> getTrips() {
         return tripService.getTrips();
     }
 
     //Add a trip
-    @PostMapping("/addTrip")
+    @PostMapping("/add")
     public void addTag(@RequestBody Trip trip) {
         tripService.addTrip(trip);
     }
 
     //Find trip by id
-    @GetMapping("/trip/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Optional<Trip>> findCountryById(@PathVariable int id) {
         Optional<Trip> trip = tripService.findTripById(id);
         if (trip.isEmpty()) {
@@ -43,7 +43,7 @@ public class TripController {
     }
 
     //DELETE trip by id
-    @DeleteMapping("/tag/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Optional<Trip>> delete(@PathVariable("id") int id) {
         Optional<Trip> trip = tripService.findTripById(id);
         if (trip.isEmpty()) {
@@ -56,7 +56,7 @@ public class TripController {
     }
 
     //PUT,update by id
-    @PutMapping("/tag/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Optional<Trip>> update(@PathVariable("id") int id, @RequestBody Trip requestTrip) {
         Optional<Trip> trip = tripService.findTripById(id);
         if (trip.isEmpty()) {

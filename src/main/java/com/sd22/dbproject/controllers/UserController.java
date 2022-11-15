@@ -12,36 +12,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/allUsers")
+    @GetMapping("/")
     public List<User> getAllUsers(){
         return userService.getUsers();
     }
 
-    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+    @PostMapping("/add")
     public void addUser(@RequestBody User user){
         userService.addUser(user);
     }
 
-/*    @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public User findUserById(@RequestParam int id) {
-        try {
-            User user = userService.findUserById(id).orElseThrow(UserNotFoundException::new);
-            if (user == null) {
-                return (User)ResponseEntity.status(HttpStatus.BAD_REQUEST);
-            } else {
-                return ResponseEntity.ok(user).getBody();
-            }
-        }catch(DataAccessException e){
-            return (User)ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }*/
-
-    @GetMapping("/users/{id}")
+    @GetMapping("/update/{id}")
     public User findUserById(@PathVariable int id) {
         try {
             User user = userService.findUserById(id).orElseThrow(UserNotFoundException::new);
@@ -55,8 +41,8 @@ public class UserController {
         }
     }
     
-    @RequestMapping(value = "/users", method = RequestMethod.DELETE)
-    public User deleteUserById(@RequestParam int id){
+    @DeleteMapping ("/delete/{id}")
+    public User deleteUserById(@PathVariable int id){
         User user = userService.findUserById(id).orElseThrow(UserNotFoundException::new);
 
         if(user != null){
