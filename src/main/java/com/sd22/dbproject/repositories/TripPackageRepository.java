@@ -1,6 +1,6 @@
 package com.sd22.dbproject.repositories;
 
-import com.sd22.dbproject.models.TripPackage;
+import com.sd22.dbproject.entities.TripPackage;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

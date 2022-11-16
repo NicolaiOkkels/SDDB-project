@@ -75,19 +75,47 @@ INSERT INTO `trips` VALUES (4, 'tbd', 200.00, 'Between 3-4 hours', 'Metropolitan
 INSERT INTO `trips` VALUES (5, 'tbd', 299.99, 'Around 2 hours', 'Knossos archeologial site', 'Tuesday & Thursday between 10-21', null, 6, 3);
 
 -- user should have a name for the reviews
-CREATE TABLE `user` (
+CREATE TABLE `users` (
   `user_id` INT NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(32) NOT NULL,
   `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE
-) ENGINE=InnoDB AUTO_INCREMENT = 5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT = 7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO `user` VALUES (1, 'admin123@gmail.com', '12345', CURRENT_TIMESTAMP);
-INSERT INTO `user` VALUES (2, 'Lynn_Rehman5192@twipet.com', 'noonewillguessthis', CURRENT_TIMESTAMP);
-INSERT INTO `user` VALUES (3, 'Barry_Moore9181@nickia.com', 'notapassword', CURRENT_TIMESTAMP);
-INSERT INTO `user` VALUES (4, 'Bob_Bob123@live.dk', 'randomword', CURRENT_TIMESTAMP);
+INSERT INTO `users` VALUES (1, 'admin123@gmail.com', '12345', CURRENT_TIMESTAMP);
+INSERT INTO `users` VALUES (2, 'Lynn_Rehman5192@twipet.com', 'noonewillguessthis', CURRENT_TIMESTAMP);
+INSERT INTO `users` VALUES (3, 'Barry_Moore9181@nickia.com', 'notapassword', CURRENT_TIMESTAMP);
+INSERT INTO `users` VALUES (4, 'Bob_Bob123@live.dk', 'randomword', CURRENT_TIMESTAMP);
+INSERT INTO `users` VALUES (5, 'user', 'user', CURRENT_TIMESTAMP);
+INSERT INTO `users` VALUES (6, 'admin', 'admin', CURRENT_TIMESTAMP);
+
+CREATE TABLE `roles` (
+    `role_id` INT NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(45) NOT NULL,
+    PRIMARY KEY (`role_id`)
+);
+
+CREATE TABLE `users_roles` (
+    `user_id` INT NOT NULL,
+    `role_id` INT NOT NULL,
+    INDEX `user_fk_idx` (`user_id`),
+    INDEX `role_fk_idx` (`role_id`),
+    CONSTRAINT `role_fk` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`),
+    CONSTRAINT `user_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+);
+
+INSERT INTO `roles` (`name`) VALUES ('USER');
+INSERT INTO `roles` (`name`) VALUES ('ADMIN');
+
+INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (1, 1);
+INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (2, 1);
+INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (3, 1);
+INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (4, 1);
+INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (5, 1);
+INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (6, 1);
+INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (6, 2);
 
 -- reviews could have a create_time as user for when the review is created
 -- maybe should rating be smallint or something else 
@@ -103,7 +131,7 @@ CREATE TABLE `reviews` (
   INDEX `fk_reviews_trips1_idx` (`trips_trip_id` ASC) VISIBLE,
   INDEX `fk_reviews_user1_idx` (`user_user_id` ASC) VISIBLE,
   CONSTRAINT `fk_reviews_trips1` FOREIGN KEY (`trips_trip_id`) REFERENCES `trips` (`trip_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_reviews_user1` FOREIGN KEY (`user_user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_reviews_user1` FOREIGN KEY (`user_user_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
   ) ENGINE=InnoDB AUTO_INCREMENT = 5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `reviews` VALUES (1, 'Super exciting tour in New York', '5', '2020-05-01', 'We got picked up at the hotel by the guide....tbd',2 ,1);

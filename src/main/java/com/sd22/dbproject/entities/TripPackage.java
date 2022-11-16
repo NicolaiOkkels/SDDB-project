@@ -1,4 +1,4 @@
-package com.sd22.dbproject.models;
+package com.sd22.dbproject.entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;

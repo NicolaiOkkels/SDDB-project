@@ -1,9 +1,8 @@
-package com.sd22.dbproject.models;
+package com.sd22.dbproject.entities;
 
 import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 

@@ -1,7 +1,6 @@
 package com.sd22.dbproject.services;
 
-import com.sd22.dbproject.models.Review;
-import com.sd22.dbproject.models.TripPackage;
+import com.sd22.dbproject.entities.TripPackage;
 import com.sd22.dbproject.repositories.TripPackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,12 +1,11 @@
 package com.sd22.dbproject.controllers;
 
-import com.sd22.dbproject.models.Tag;
-import com.sd22.dbproject.models.Trip;
-import com.sd22.dbproject.services.TagService;
+import com.sd22.dbproject.entities.Trip;
 import com.sd22.dbproject.services.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

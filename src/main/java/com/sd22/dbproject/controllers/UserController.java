@@ -1,7 +1,7 @@
 package com.sd22.dbproject.controllers;
 
 import com.sd22.dbproject.controllers.exceptions.UserNotFoundException;
-import com.sd22.dbproject.models.User;
+import com.sd22.dbproject.entities.User;
 import com.sd22.dbproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
