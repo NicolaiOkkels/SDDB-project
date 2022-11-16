@@ -28,10 +28,13 @@ public class SecurityConfig {
                         .antMatchers("/swagger-ui/**", "/api-docs/**").permitAll()
                         .mvcMatchers("/api/counties/**", "/api/locations/**",
                                 "/api/reviews/**","/api/tags/**", "/api/trips/**",
-                                "/api/users/**", "/api/packages/**").permitAll()
+                                "/api/users/**", "/api/packages/**").hasAuthority("USER")
                         .anyRequest().authenticated())
                 .userDetailsService(myUserDetailsService)
-                .httpBasic(Customizer.withDefaults())
+                .formLogin().permitAll()
+                .and()
+                .logout().permitAll()
+                .and()
                 .build();
     }
 

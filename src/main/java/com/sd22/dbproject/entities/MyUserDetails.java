@@ -21,7 +21,6 @@ public class MyUserDetails implements UserDetails {
         user.getRoles().forEach((role)-> {
             authorities.add(new SimpleGrantedAuthority(role.getName()));
         });
-
         return authorities;
     }
 
