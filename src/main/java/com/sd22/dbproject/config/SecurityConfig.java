@@ -31,9 +31,7 @@ public class SecurityConfig {
                                 "/api/users/**", "/api/packages/**").hasAuthority("USER")
                         .anyRequest().authenticated())
                 .userDetailsService(myUserDetailsService)
-                .formLogin().permitAll()
-                .and()
-                .logout().permitAll()
+                .httpBasic()
                 .and()
                 .build();
     }
