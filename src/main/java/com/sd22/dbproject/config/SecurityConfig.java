@@ -28,7 +28,8 @@ public class SecurityConfig {
                         .antMatchers("/swagger-ui/**", "/api-docs/**").permitAll()
                         .mvcMatchers("/api/counties/**", "/api/locations/**",
                                 "/api/reviews/**","/api/tags/**", "/api/trips/**",
-                                "/api/users/**", "/api/packages/**").hasAuthority("USER")
+                                "/api/packages/**").hasAuthority("USER")
+                        .mvcMatchers("/api/users/**").hasAuthority("ADMIN")
                         .anyRequest().authenticated())
                 .userDetailsService(myUserDetailsService)
                 .httpBasic()
