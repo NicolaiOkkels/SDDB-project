@@ -88,7 +88,7 @@ INSERT INTO `users` VALUES (1, 'admin123@gmail.com', '12345', CURRENT_TIMESTAMP)
 INSERT INTO `users` VALUES (2, 'Lynn_Rehman5192@twipet.com', 'noonewillguessthis', CURRENT_TIMESTAMP);
 INSERT INTO `users` VALUES (3, 'Barry_Moore9181@nickia.com', 'notapassword', CURRENT_TIMESTAMP);
 INSERT INTO `users` VALUES (4, 'Bob_Bob123@live.dk', 'randomword', CURRENT_TIMESTAMP);
-INSERT INTO `users` VALUES (5, 'user', 'user', CURRENT_TIMESTAMP);
+INSERT INTO `users` VALUES (5, 'test', 'password', CURRENT_TIMESTAMP);
 INSERT INTO `users` VALUES (6, 'admin', 'admin', CURRENT_TIMESTAMP);
 
 CREATE TABLE `roles` (
