@@ -1,10 +1,7 @@
 package com.sd22.dbproject.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
-
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,7 +14,6 @@ public class User {
     private String email;
     private String password;
 
-    @JsonBackReference
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
@@ -26,11 +22,9 @@ public class User {
     )
     private Set<Role> roles = new HashSet<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Review> reviews;
-
     public User() {
     }
+
     public User(String email, String password) {
         this.email = email;
         this.password = password;
@@ -42,14 +36,6 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
     }
 
     public int getUserId() {

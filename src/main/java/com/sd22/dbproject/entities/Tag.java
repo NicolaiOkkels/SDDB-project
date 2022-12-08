@@ -14,34 +14,11 @@ public class Tag {
 
     private String name;
 
-    @ManyToMany
-    @JoinTable(
-            name = "package_tags",
-            joinColumns = @JoinColumn(name = "tags_tag_id"),
-            inverseJoinColumns = @JoinColumn(name = "packages_package_id"))
-    private List<TripPackage> tripPackages;
-
-    @JsonBackReference
-    @ManyToMany(mappedBy = "tripTags", fetch = FetchType.LAZY)
-    private List<Trip> trips;
-
     public Tag() {
     }
 
     public Tag(String name) {
         this.name = name;
-    }
-
-    public List<Trip> getTrips() {
-        return trips;
-    }
-
-    public List<TripPackage> getTripPackages() {
-        return tripPackages;
-    }
-
-    public void setTripPackages(List<TripPackage> tripPackages) {
-        this.tripPackages = tripPackages;
     }
 
     public int getTagId() {

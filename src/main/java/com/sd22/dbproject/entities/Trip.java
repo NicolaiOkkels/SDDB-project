@@ -1,10 +1,7 @@
 package com.sd22.dbproject.entities;
 
-import com.fasterxml.jackson.annotation.*;
-
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "trips")
@@ -20,60 +17,17 @@ public class Trip {
     private String availabilty;
     private Double ratingTotal;
 
-    //child backward
-    //@JsonBackReference
-    //@JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "locations_location_id")
-    private Location location;
-
-    @ManyToOne
-    @JoinColumn(name = "packages_package_id")
-    private TripPackage tripPackage;
-
-    //@JsonIgnore
-    @JsonBackReference
-    @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
-    private List<Review> reviews;
-
-   // @JsonManagedReference
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "trip_tags",
-            joinColumns = @JoinColumn(name = "trips_trip_id"),
-            inverseJoinColumns = @JoinColumn(name = "tags_tag_id"))
-    private Set<Tag> tripTags;
-
     public Trip() {
     }
 
     public Trip(String description, double price, String length, String title, String availabilty, Double ratingTotal,
-                Location location, TripPackage tripPackage, List<Review> reviews) {
+                Location location, List<Review> reviews) {
         this.description = description;
         this.price = price;
         this.length = length;
         this.title = title;
         this.availabilty = availabilty;
         this.ratingTotal = ratingTotal;
-        this.location = location;
-        this.tripPackage = tripPackage;
-        this.reviews = reviews;
-    }
-
-    public Set<Tag> getTags() {
-        return tripTags;
-    }
-
-    public void setTags(Set<Tag> tags) {
-        this.tripTags = tags;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
     }
 
     public int getTripId() {

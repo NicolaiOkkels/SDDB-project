@@ -1,9 +1,6 @@
 package com.sd22.dbproject.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
-
 import java.util.Set;
 
 @Entity
@@ -13,12 +10,7 @@ public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int countryId;
-
     private String name;
-
-    //parent forward
-    @JsonManagedReference
-    @JsonIgnore
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
     private Set<Location> locations;
 
@@ -63,4 +55,5 @@ public class Country {
                 ", locations=" + locations +
                 '}';
     }
+
 }
