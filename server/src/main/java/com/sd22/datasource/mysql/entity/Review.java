@@ -1,29 +1,31 @@
 package com.sd22.datasource.mysql.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name ="reviews")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int reviewId;
+    private int id;
     private String title;
     private int rating;
+
+    @Column(name = "visit_date")
     private Date visitDate;
     private String text;
 
-    @JsonManagedReference
-    @ManyToOne
-    @JoinColumn(name = "user_user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference("review_user")
     private User user;
 
-    @JsonManagedReference
-    @ManyToOne
-    @JoinColumn(name = "trips_trip_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference("review_trip")
     private Trip trip;
 
     public Review() {
@@ -38,12 +40,12 @@ public class Review {
         this.trip = trip;
     }
 
-    public int getReviewId() {
-        return reviewId;
+    public int getId() {
+        return id;
     }
 
-    public void setReviewId(int reviewId) {
-        this.reviewId = reviewId;
+    public void setId(int reviewId) {
+        this.id = reviewId;
     }
 
     public String getTitle() {
@@ -97,13 +99,11 @@ public class Review {
     @Override
     public String toString() {
         return "Review{" +
-                "reviewId=" + reviewId +
+                "reviewId=" + id +
                 ", title='" + title + '\'' +
                 ", rating=" + rating +
                 ", visitDate=" + visitDate +
                 ", text='" + text + '\'' +
-                ", user=" + user +
-                ", trip=" + trip +
                 '}';
     }
 }

@@ -2,12 +2,12 @@ package com.sd22.datasource.mysql.service;
 
 import com.sd22.datasource.mysql.entity.Location;
 import com.sd22.datasource.mysql.repository.LocationRepository;
+import com.sd22.datasource.mysql.service.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class LocationService {
@@ -20,12 +20,12 @@ public class LocationService {
         return locations;
     }
 
-    public void addLocation(Location location) {
-        locationRepository.save(location);
+    public Location addLocation(Location location) {
+       return locationRepository.save(location);
     }
 
-    public Optional<Location> findLocationById(int id) {
-        return locationRepository.findById(id);
+    public Location findLocationById(int id) {
+        return locationRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
     public void deleteLocationById(int id) {

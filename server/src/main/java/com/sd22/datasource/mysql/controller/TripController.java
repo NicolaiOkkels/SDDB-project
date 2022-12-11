@@ -8,10 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/trips")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TripController {
 
     @Autowired
@@ -19,50 +19,36 @@ public class TripController {
 
     //Get all trips
     @GetMapping("/")
-    public List<Trip> getTrips() {
-        return tripService.getTrips();
+    public ResponseEntity<List<Trip>> getTrips() {
+        List<Trip> trips = tripService.getTrips();
+        return new ResponseEntity<>(trips, HttpStatus.OK);
     }
 
     //Add a trip
     @PostMapping("/add")
-    public void addTag(@RequestBody Trip trip) {
-        tripService.addTrip(trip);
+    public ResponseEntity<Trip> addTrip(@RequestBody Trip trip) {
+        Trip newTrip = tripService.addTrip(trip);
+        return new ResponseEntity<>(newTrip,HttpStatus.CREATED);
     }
 
     //Find trip by id
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Trip>> findCountryById(@PathVariable int id) {
-        Optional<Trip> trip = tripService.findTripById(id);
-        if (trip.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(trip);
-        } else {
-            return ResponseEntity.ok(trip);
-        }
+    public ResponseEntity<Trip> findTripById(@PathVariable int id) {
+        Trip trip = tripService.findTripById(id);
+        return new ResponseEntity<>(trip, HttpStatus.OK);
     }
 
     //DELETE trip by id
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Optional<Trip>> delete(@PathVariable("id") int id) {
-        Optional<Trip> trip = tripService.findTripById(id);
-        if (trip.isEmpty()) {
-            //id does not exist
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(trip);
-        }
+    public ResponseEntity<Trip> delete(@PathVariable("id") int id) {
         tripService.deleteTripById(id);
-
-        return ResponseEntity.ok(trip);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    //PUT,update by id
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Optional<Trip>> update(@PathVariable("id") int id, @RequestBody Trip requestTrip) {
-        Optional<Trip> trip = tripService.findTripById(id);
-        if (trip.isEmpty()) {
-            //id does not exist
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(trip);
-        }
-        tripService.updateTrip(requestTrip);
-
-        return ResponseEntity.ok(trip);
+    //PUT, update by id
+    @PutMapping("/update")
+    public ResponseEntity<Trip> update(@RequestBody Trip trip) {
+        Trip updateTrip = tripService.updateTrip(trip);
+        return new ResponseEntity<>(updateTrip, HttpStatus.OK);
     }
 }

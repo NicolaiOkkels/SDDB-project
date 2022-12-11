@@ -2,12 +2,12 @@ package com.sd22.datasource.mysql.service;
 
 import com.sd22.datasource.mysql.entity.User;
 import com.sd22.datasource.mysql.repository.UserRepository;
+import com.sd22.datasource.mysql.service.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -19,16 +19,19 @@ public class UserService {
         return users;
     }
 
-    public void addUser(User user) {
-        userRepository.save(user);
+    public User addUser(User user) {
+        return userRepository.save(user);
     }
 
-    public Optional<User> findUserById(int id) {
-        return userRepository.findById(id);
+    public User findUserById(int id) {
+        return userRepository.findById(id).orElseThrow(()-> new NotFoundException());
     }
 
-    //TODO: missing logic to delete all contrains first etc. reviews
     public void deleteUserById(int id) {
         userRepository.deleteById(id);
+    }
+
+    public User updateUser(User user){
+        return userRepository.save(user);
     }
 }

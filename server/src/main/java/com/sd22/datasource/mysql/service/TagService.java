@@ -1,12 +1,13 @@
 package com.sd22.datasource.mysql.service;
+
 import com.sd22.datasource.mysql.entity.Tag;
 import com.sd22.datasource.mysql.repository.TagRepository;
+import com.sd22.datasource.mysql.service.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TagService {
@@ -19,12 +20,12 @@ public class TagService {
         return tags;
     }
 
-    public void addTag(Tag tag) {
-        tagRepository.save(tag);
+    public Tag addTag(Tag tag) {
+       return tagRepository.save(tag);
     }
 
-    public Optional<Tag> findTagById(int id) {
-        return tagRepository.findById(id);
+    public Tag findTagById(int id) {
+        return tagRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
     public void deleteTagById(int id) {

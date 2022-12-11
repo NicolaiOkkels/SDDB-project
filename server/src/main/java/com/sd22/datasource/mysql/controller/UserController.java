@@ -1,10 +1,8 @@
 package com.sd22.datasource.mysql.controller;
 
-import com.sd22.database.mysql.controller.exceptions.UserNotFoundException;
 import com.sd22.datasource.mysql.entity.User;
 import com.sd22.datasource.mysql.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,41 +11,43 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
     @Autowired
     private UserService userService;
 
+    //Get all users
     @GetMapping("/")
-    public List<User> getAllUsers(){
-        return userService.getUsers();
+    public ResponseEntity<List<User>> getUsers() {
+        List<User> users = userService.getUsers();
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
+    //Add a user
     @PostMapping("/add")
-    public void addUser(@RequestBody User user){
-        userService.addUser(user);
+    public ResponseEntity<User> addUser(@RequestBody User user) {
+        User newUser = userService.addUser(user);
+        return new ResponseEntity<>(newUser,HttpStatus.CREATED);
     }
 
-    @GetMapping("/update/{id}")
-    public User findUserById(@PathVariable int id) {
-        try {
-            User user = userService.findUserById(id).orElseThrow(UserNotFoundException::new);
-            if (user == null) {
-                return (User)ResponseEntity.status(HttpStatus.BAD_REQUEST);
-            } else {
-                return ResponseEntity.ok(user).getBody();
-            }
-        }catch(DataAccessException e){
-            return (User)ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    //Find user by id
+    @GetMapping("/{id}")
+    public ResponseEntity<User> findUserById(@PathVariable int id) {
+        User user = userService.findUserById(id);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
-    
-    @DeleteMapping ("/delete/{id}")
-    public User deleteUserById(@PathVariable int id){
-        User user = userService.findUserById(id).orElseThrow(UserNotFoundException::new);
 
-        if(user != null){
-           userService.deleteUserById(id);
-        }
-        return user;
+    //DELETE user by id
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<User> delete(@PathVariable("id") int id) {
+        userService.deleteUserById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    //PUT, update by id
+    @PutMapping("/update")
+    public ResponseEntity<User> update(@RequestBody User user) {
+        User updateUser = userService.updateUser(user);
+        return new ResponseEntity<>(updateUser, HttpStatus.OK);
     }
 }

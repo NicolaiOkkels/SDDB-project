@@ -44,13 +44,12 @@ public class MysqlConfig {
         return new JpaTransactionManager(entityManagerFactory.getObject());
     }
 
-    @Bean(name = "entityManagerFactory")
+/*    @Bean(name = "entityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(@Qualifier("mysql") DataSource mysql){
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactory.setDataSource(mysql);
         entityManagerFactory.setPackagesToScan("com.sd22.datasource.mysql");
         entityManagerFactory.setPersistenceProvider(new HibernatePersistenceProvider());
         return entityManagerFactory;
-    }
-
+    }*/
 }

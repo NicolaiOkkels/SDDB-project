@@ -8,60 +8,48 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/tags")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+
 public class TagController {
+
     @Autowired
     private TagService tagService;
 
-    //Get all tag
+    //Get all tags
     @GetMapping("/")
-    public List<Tag> getTags() {
-        return tagService.getTags();
+    public ResponseEntity<List<Tag>> getTags() {
+        List<Tag> tags = tagService.getTags();
+        return new ResponseEntity<>(tags, HttpStatus.OK);
     }
 
-    //Add a tag
+    //Add a review
     @PostMapping("/add")
-    public void addTag(@RequestBody Tag tag) {
-        tagService.addTag(tag);
+    public ResponseEntity<Tag> addTag(@RequestBody Tag tag) {
+        Tag newTag = tagService.addTag(tag);
+        return new ResponseEntity<>(newTag,HttpStatus.CREATED);
     }
 
     //Find tag by id
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Tag>> findCountryById(@PathVariable int id) {
-            Optional<Tag> tag = tagService.findTagById(id);
-            if (tag.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(tag);
-            } else {
-                return ResponseEntity.ok(tag);
-            }
+    public ResponseEntity<Tag> findTagById(@PathVariable int id) {
+        Tag tag = tagService.findTagById(id);
+        return new ResponseEntity<>(tag, HttpStatus.OK);
     }
 
     //DELETE tag by id
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Optional<Tag>> delete(@PathVariable("id") int id) {
-        Optional<Tag> tag = tagService.findTagById(id);
-        if (tag.isEmpty()) {
-            //id does not exist
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(tag);
-        }
+    public ResponseEntity<Tag> delete(@PathVariable("id") int id) {
         tagService.deleteTagById(id);
-
-        return ResponseEntity.ok(tag);
-    }
-    //PUT,update by id
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Optional<Tag>> update(@PathVariable("id") int id, @RequestBody Tag requestTag) {
-        Optional<Tag> tag = tagService.findTagById(id);
-        if (tag.isEmpty()) {
-            //id does not exist
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(tag);
-        }
-        tagService.updateTag(requestTag);
-
-        return ResponseEntity.ok(tag);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    //PUT, update by id
+    @PutMapping("/update")
+    public ResponseEntity<Tag> update(@RequestBody Tag tag) {
+        Tag updateTag = tagService.updateTag(tag);
+        return new ResponseEntity<>(updateTag, HttpStatus.OK);
+    }
 }

@@ -2,12 +2,12 @@ package com.sd22.datasource.mysql.service;
 
 import com.sd22.datasource.mysql.entity.Review;
 import com.sd22.datasource.mysql.repository.ReviewRepository;
+import com.sd22.datasource.mysql.service.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ReviewService {
@@ -20,12 +20,12 @@ public class ReviewService {
         return reviews;
     }
 
-    public void addReview(Review review) {
-        reviewRepository.save(review);
+    public Review addReview(Review review) {
+        return reviewRepository.save(review);
     }
 
-    public Optional<Review> findReviewById(int id) {
-        return reviewRepository.findById(id);
+    public Review findReviewById(int id) {
+        return reviewRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
     public void deleteReviewById(int id) {

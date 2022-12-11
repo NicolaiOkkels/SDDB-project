@@ -1,73 +1,54 @@
 package com.sd22.datasource.mysql.controller;
 
-import com.sd22.database.mysql.controller.exceptions.UserNotFoundException;
 import com.sd22.datasource.mysql.entity.Country;
 import com.sd22.datasource.mysql.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/countries")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CountryController {
     @Autowired
     private CountryService countryService;
 
     //Get all countries
     @GetMapping("/")
-    public List<Country> getAllCountries() {
-        return countryService.getCountries();
+    public ResponseEntity<List<Country>> getCountries() {
+        List<Country> countries = countryService.getCountries();
+        return new ResponseEntity<>(countries, HttpStatus.OK);
     }
 
     //Add a country
     @PostMapping("/add")
-    public void addCountry(@RequestBody Country country) {
-        countryService.addCountry(country);
+    public ResponseEntity<Country> addCountry(@RequestBody Country country) {
+        Country newCountry = countryService.addCountry(country);
+        return new ResponseEntity<>(newCountry,HttpStatus.CREATED);
     }
 
     //Find country by id
     @GetMapping("/{id}")
-    public Country findCountryById(@PathVariable int id) {
-        try {
-            Country country = countryService.findCountryById(id).orElseThrow(UserNotFoundException::new);
-            if (country == null) {
-                return (Country) ResponseEntity.status(HttpStatus.BAD_REQUEST);
-            } else {
-                return ResponseEntity.ok(country).getBody();
-            }
-        } catch (DataAccessException e) {
-            return (Country) ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public ResponseEntity<Country> findCountryById(@PathVariable int id) {
+        Country country = countryService.findCountryById(id);
+        return new ResponseEntity<>(country, HttpStatus.OK);
     }
 
     //DELETE country by id
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> delete(@PathVariable("id") int id) {
-        Optional<Country> optionalCountry = countryService.findCountryById(id);
-        if (!optionalCountry.isPresent()) {
-            //id does not exist
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{'msg' : 'country " + id + " not found'}");
-        }
+    public ResponseEntity<Country> delete(@PathVariable("id") int id) {
         countryService.deleteCountryById(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("{ 'msg' : 'deleted' }");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     //PUT,update by id
-    @PutMapping("/update/{id}")
-    public ResponseEntity<String> update(@PathVariable("id") int id, @RequestBody Country country) {
-        Optional<Country> optionalCountry = countryService.findCountryById(id);
-        if (!optionalCountry.isPresent()) {
-            //id does not exist
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{'msg' : 'country " + id + " not found'}");
-        }
+    @PutMapping("/update")
+    public ResponseEntity<Country> update(@RequestBody Country country) {
+        Country updateCountry = countryService.updateCountry(country);
         countryService.updateCountry(country);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("{ 'msg' : 'updated' }");
+        return new ResponseEntity<>(updateCountry, HttpStatus.OK);
     }
-
-
 }

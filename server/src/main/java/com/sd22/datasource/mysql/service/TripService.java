@@ -2,12 +2,12 @@ package com.sd22.datasource.mysql.service;
 
 import com.sd22.datasource.mysql.entity.Trip;
 import com.sd22.datasource.mysql.repository.TripRepository;
+import com.sd22.datasource.mysql.service.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TripService {
@@ -20,12 +20,12 @@ public class TripService {
         return trips;
     }
 
-    public void addTrip(Trip trip) {
-        tripRepository.save(trip);
+    public Trip addTrip(Trip trip) {
+       return tripRepository.save(trip);
     }
 
-    public Optional<Trip> findTripById(int id) {
-        return tripRepository.findById(id);
+    public Trip findTripById(int id) {
+        return tripRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
     public void deleteTripById(int id) {

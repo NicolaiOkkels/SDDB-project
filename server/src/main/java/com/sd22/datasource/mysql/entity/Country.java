@@ -1,9 +1,6 @@
 package com.sd22.datasource.mysql.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
-
 import java.util.Set;
 
 @Entity
@@ -12,31 +9,26 @@ public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int countryId;
-
+    private int id;
     private String name;
 
-    //parent forward
-    @JsonManagedReference
-    @JsonIgnore
-    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "country", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Location> locations;
 
     public Country() {
     }
 
     public Country(String name, Set<Location> locations) {
-        this.countryId = countryId;
         this.name = name;
         this.locations = locations;
     }
 
-    public int getCountryId() {
-        return countryId;
+    public int getId() {
+        return id;
     }
 
-    public void setCountryId(int countryId) {
-        this.countryId = countryId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -58,9 +50,10 @@ public class Country {
     @Override
     public String toString() {
         return "Country{" +
-                "countryId=" + countryId +
+                "countryId=" + id +
                 ", name='" + name + '\'' +
-                ", locations=" + locations +
+                ", locations=" + locations
+                +
                 '}';
     }
 }

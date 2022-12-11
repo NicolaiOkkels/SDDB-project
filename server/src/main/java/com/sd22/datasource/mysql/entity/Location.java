@@ -1,47 +1,43 @@
 package com.sd22.datasource.mysql.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name ="locations")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int locationId;
-
+    private int id;
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "countries_country_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     private Country country;
 
-    //parent forward
-    @JsonManagedReference
-    @JsonIgnore
-    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "location", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Trip> trips;
 
     public Location() {
     }
 
-    public Location(int locationId, String name, Country country, List<Trip> trips) {
-        this.locationId = locationId;
+    public Location(String name, Country country, List<Trip> trips) {
         this.name = name;
         this.country = country;
         this.trips = trips;
     }
 
-    public int getLocationId() {
-        return locationId;
+    public int getId() {
+        return id;
     }
 
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
+    public void setId(int locationId) {
+        this.id = locationId;
     }
 
     public String getName() {
@@ -71,10 +67,8 @@ public class Location {
     @Override
     public String toString() {
         return "Location{" +
-                "locationId=" + locationId +
+                "locationId=" + id +
                 ", name='" + name + '\'' +
-                ", country=" + country +
-                ", trips=" + trips +
                 '}';
     }
 }
