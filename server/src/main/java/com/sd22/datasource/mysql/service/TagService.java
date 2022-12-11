@@ -5,6 +5,7 @@ import com.sd22.datasource.mysql.repository.TagRepository;
 import com.sd22.datasource.mysql.service.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,18 +21,22 @@ public class TagService {
         return tags;
     }
 
+    @Transactional("mysqlTransactionManager")
     public Tag addTag(Tag tag) {
        return tagRepository.save(tag);
     }
 
+    @Transactional("mysqlTransactionManager")
     public Tag findTagById(int id) {
         return tagRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
+    @Transactional("mysqlTransactionManager")
     public void deleteTagById(int id) {
         tagRepository.deleteById(id);
     }
 
+    @Transactional("mysqlTransactionManager")
     public Tag updateTag(Tag tag){
         return tagRepository.save(tag);
     }

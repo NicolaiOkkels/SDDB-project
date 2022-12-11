@@ -13,19 +13,20 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "com.sd22.datasource.mysql.repository", transactionManagerRef = "mysqlTransactionManager", entityManagerFactoryRef = "entityManagerFactory")
 @EnableTransactionManagement
 public class MysqlConfig {
 
-    @Value("${spring.datasource.url}")
+    @Value("${spring.mysql.jdbc-url}")
     private String mysqlUri;
 
-    @Value("${spring.datasource.username}")
+    @Value("${spring.mysql.username}")
     private String username;
 
-    @Value("${spring.datasource.password}")
+    @Value("${spring.mysql.password}")
     private String password;
 
 
@@ -44,12 +45,21 @@ public class MysqlConfig {
         return new JpaTransactionManager(entityManagerFactory.getObject());
     }
 
-/*    @Bean(name = "entityManagerFactory")
+    @Bean(name = "entityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(@Qualifier("mysql") DataSource mysql){
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactory.setDataSource(mysql);
         entityManagerFactory.setPackagesToScan("com.sd22.datasource.mysql");
-        entityManagerFactory.setPersistenceProvider(new HibernatePersistenceProvider());
+        entityManagerFactory.setPersistenceProviderClass(HibernatePersistenceProvider.class);
+        entityManagerFactory.setJpaProperties(getHibernateProperties());
         return entityManagerFactory;
-    }*/
+    }
+
+    @Bean
+    private static Properties getHibernateProperties(){
+        Properties hibernateProperties = new Properties();
+        hibernateProperties.put("hibernate.show_sql", true);
+        hibernateProperties.put("hibernate.hbm2ddl.auto", "update");
+        return hibernateProperties;
+    }
 }

@@ -1,9 +1,6 @@
-/*
-package com.sd22.database.mysql.service;
+/*package com.sd22.datasource.security.service;
 
-
-import com.sd22.database.mysql.entity.MyUserDetails;
-import com.sd22.database.mysql.repository.UserRepository;
+import com.sd22.datasource.mysql.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -23,5 +20,5 @@ public class MyUserDetailsService implements UserDetailsService {
                 .map(MyUserDetails::new)
                 .orElseThrow(() -> new UsernameNotFoundException("Username not found" + username));
     }
-}
-*/
+}*/
+
