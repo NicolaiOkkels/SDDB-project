@@ -15,6 +15,7 @@ public class TripService {
     @Autowired
     private TripRepository tripRepository;
 
+    @Transactional("mysqlTransactionManager")
     public List<Trip> getTrips() {
         List<Trip> trips = new ArrayList<>();
         tripRepository.findAll().forEach(trips::add);

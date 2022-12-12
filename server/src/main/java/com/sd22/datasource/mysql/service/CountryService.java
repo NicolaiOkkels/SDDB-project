@@ -15,6 +15,7 @@ public class CountryService {
     @Autowired
     private CountryRepository countryRepository;
 
+    @Transactional("mysqlTransactionManager")
     public List<Country> getCountries() {
         List<Country> countries = new ArrayList<>();
         countryRepository.findAll().forEach(countries::add);

@@ -14,6 +14,8 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+
+    @Transactional("mysqlTransactionManager")
     public List<User> getUsers() {
         List<User> users = new ArrayList<>();
         userRepository.findAll().forEach(users::add);
@@ -33,6 +35,11 @@ public class UserService {
     @Transactional("mysqlTransactionManager")
     public void deleteUserById(int id) {
         userRepository.deleteById(id);
+    }
+
+    @Transactional("mysqlTransactionManager")
+    public boolean existsByUsername(String email) {
+        return userRepository.existsByEmail(email);
     }
 
     @Transactional("mysqlTransactionManager")

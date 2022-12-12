@@ -15,6 +15,7 @@ public class LocationService {
     @Autowired
     private LocationRepository locationRepository;
 
+    @Transactional("mysqlTransactionManager")
     public List<Location> getLocations() {
         List<Location> locations = new ArrayList<>();
         locationRepository.findAll().forEach(locations::add);

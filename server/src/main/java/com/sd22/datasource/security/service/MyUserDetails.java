@@ -1,5 +1,6 @@
-/*package com.sd22.datasource.security.service;
+package com.sd22.datasource.security.service;
 
+import com.sd22.datasource.mysql.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -53,5 +54,5 @@ public class MyUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-}*/
+}
 

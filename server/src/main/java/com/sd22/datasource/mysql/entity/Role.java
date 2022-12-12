@@ -13,7 +13,7 @@ public class Role {
     private int id;
     private String name;
 
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonBackReference
     private List<User> users;
 

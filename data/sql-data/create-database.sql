@@ -55,7 +55,7 @@ INSERT INTO `trips` VALUES (5, 'tbd', 299.99, 'Around 2 hours', 'Knossos archeol
 CREATE TABLE `users` (
                          `id` INT NOT NULL AUTO_INCREMENT,
                          `email` VARCHAR(255) NOT NULL,
-                         `password` VARCHAR(32) NOT NULL,
+                         `password` VARCHAR(255) NOT NULL,
                          `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
                          PRIMARY KEY (`id`),
                          UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE

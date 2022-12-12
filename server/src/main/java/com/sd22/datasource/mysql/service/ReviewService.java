@@ -15,6 +15,7 @@ public class ReviewService {
     @Autowired
     private ReviewRepository reviewRepository;
 
+    @Transactional("mysqlTransactionManager")
     public List<Review> getReviews() {
         List<Review> reviews = new ArrayList<>();
         reviewRepository.findAll().forEach(reviews::add);

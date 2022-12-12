@@ -15,6 +15,7 @@ public class TagService {
     @Autowired
     private TagRepository tagRepository;
 
+    @Transactional("mysqlTransactionManager")
     public List<Tag> getTags() {
         List<Tag> tags = new ArrayList<>();
         tagRepository.findAll().forEach(tags::add);
