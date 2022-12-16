@@ -17,6 +17,9 @@ CREATE (NewYork)-[:LOCATED_IN]->(US)
 
 CREATE (NewYorkWeekendTour)-[:OCCUR_AT]->(NewYork)
 
+/*CREATE CONSTRAINT review_constaint
+FOR (review:Review) REQUIRE review.title IS NOT NULL*/
+
 CREATE (NewYorkREVIEW1: Review{title: 'Best city trip ever', rating: 5, text: 'The tour guides throughout the whole trip has been great, and the greatest food I ever had. Would recommend everytime', visit: '2021-07-12'})
 CREATE (NewYorkREVIEW2: Review{title: 'Worst trip ever', rating: 1, text: 'Nothing was like it was avertised', visit: '2020-02-02'})
 
@@ -36,6 +39,5 @@ CREATE
 (Food)-[:TAGGED]->(NewYorkWeekendTour),
 (City)-[:TAGGED]->(NewYorkWeekendTour),
 (Culture)-[:TAGGED]->(NewYorkWeekendTour)
-
 
 

@@ -8,13 +8,9 @@ public class Review {
     @Id
     @GeneratedValue
     private Long id;
-
     private String title;
-
     private double rating;
-
     private String visit;
-
     private String text;
 
     @Relationship(type = "WROTE", direction = Relationship.Direction.INCOMING)
