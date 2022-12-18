@@ -1,7 +1,7 @@
-package com.sd22.datasource.mongodb.services;
+package com.sd22.datasource.mongodb.service;
 
-import com.sd22.datasource.mongodb.entities.Trip;
-import com.sd22.datasource.mongodb.repositories.TripMongoDBRepository;
+import com.sd22.datasource.mongodb.entity.Trip;
+import com.sd22.datasource.mongodb.repository.TripMongoDBRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,6 @@ public class TripMongoDBService {
     public TripMongoDBService(TripMongoDBRepository tripMongoDBRepository){
         this.tripMongoDBRepository = tripMongoDBRepository;
     }
-
 
     public Trip save(Trip trip) {
         return tripMongoDBRepository.save(trip);

@@ -1,4 +1,4 @@
-package com.sd22.datasource.mongodb.entities;
+package com.sd22.datasource.mongodb.entity;
 
 
 import org.springframework.data.annotation.Id;
