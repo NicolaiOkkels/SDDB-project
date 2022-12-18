@@ -11,7 +11,7 @@
    Setup Neo4j connection with docker running this command:
    docker run --name neo4j-docker --publish=7474:7475 --publish=7687:7688 --volume=C:/users/neo4j/data:/data --env=NEO4J_AUTH=none neo4j
 
-2. Open MySQL Workbench, Neo4j application or 
+2. Open MySQL Workbench, Neo4j application or mongodb compass
 
 3. Connect to the database by accessing the local database server on the port from the docker command
 
