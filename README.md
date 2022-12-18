@@ -19,13 +19,17 @@
 
    sql-data -> create-database.sql and execute the file in to create the database
 
-   neo4j-data -> ne4j.cypher and execute the file to create the database
+   neo4j-data -> neo4j.cypher and execute the file to create the database
 
    mongodb-data -> json files and execute the file to create the database
 
 5. Open the application in the IDE of preference
 
-6. Run the application & go to the URL: localhost:8080 for the test environment
+6. Open root folder server and go to application.properties in resources and input local url to the file.
 
-7. For testing of endpoints go to localhost:8080/swagger-ui
+   Example of this would be url for mysql: http://localhost:3306/SDDB
+
+7. Run the application & go to the URL: localhost:8080 for the test environment
+
+8. For testing of endpoints go to localhost:8080/swagger-ui
 
