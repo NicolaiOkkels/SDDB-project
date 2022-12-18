@@ -27,7 +27,7 @@
 
 6. Open root folder server and go to application.properties in resources and input local url to the file.
 
-   Example of this would be url for mysql: http://localhost:3306/SDDB
+   Example of this would be url for mysql: http://localhost:3306/SDDB with user: root and password: 123456
 
 7. Run the application & go to the URL: localhost:8080 for the test environment
 
