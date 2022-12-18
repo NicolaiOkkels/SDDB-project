@@ -1,0 +1,145 @@
+[
+  {
+    "id": 1,
+    "email": "admin123@gmail.com",
+    "password": "12345",
+    "roles": [
+      {
+        "id": 1,
+        "name": "USER"
+      }
+    ],
+    "reviews": [
+      {
+        "id": 1,
+        "title": "Super exciting tour in New York",
+        "rating": 5,
+        "visitDate": "2020-04-30T22:00:00.000+00:00",
+        "text": "We got picked up at the hotel by the guide....tbd"
+      },
+      {
+        "id": 4,
+        "title": "Exceptional tour to knossos",
+        "rating": 4,
+        "visitDate": "2021-04-10T22:00:00.000+00:00",
+        "text": "tbd"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "email": "Lynn_Rehman5192@twipet.com",
+    "password": "noonewillguessthis",
+    "roles": [
+      {
+        "id": 1,
+        "name": "USER"
+      }
+    ],
+    "reviews": [
+      {
+        "id": 2,
+        "title": "Worst trip ever, would not recommend",
+        "rating": 2,
+        "visitDate": "2022-04-30T22:00:00.000+00:00",
+        "text": "the guide was bad"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "email": "Barry_Moore9181@nickia.com",
+    "password": "notapassword",
+    "roles": [
+      {
+        "id": 1,
+        "name": "USER"
+      }
+    ],
+    "reviews": [
+      {
+        "id": 3,
+        "title": "Hyggelig tur til københavn",
+        "rating": 5,
+        "visitDate": "2022-04-20T22:00:00.000+00:00",
+        "text": "tbd"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "email": "Bob_Bob123@live.dk",
+    "password": "randomword",
+    "roles": [
+      {
+        "id": 1,
+        "name": "USER"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "id": 5,
+    "email": "test",
+    "password": "password",
+    "roles": [
+      {
+        "id": 1,
+        "name": "USER"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "id": 6,
+    "email": "admin",
+    "password": "admin",
+    "roles": [
+      {
+        "id": 2,
+        "name": "ADMIN"
+      },
+      {
+        "id": 1,
+        "name": "USER"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "id": 7,
+    "email": "registertest@test.dk",
+    "password": "$2a$10$gQhtF2yJunDmUAy.nZU.peXZpkr1Jx3gmsRaROBwastVOQlRz6TuW",
+    "roles": [
+      {
+        "id": 1,
+        "name": "USER"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "id": 8,
+    "email": "register1@test.dk",
+    "password": "$2a$10$chMpOqaXdUHACf1oqi0kDuv8wGpJXAkHtZVCIA5QEpmj0jr.nr5Sm",
+    "roles": [
+      {
+        "id": 1,
+        "name": "USER"
+      }
+    ],
+    "reviews": []
+  },
+  {
+    "id": 9,
+    "email": "tokentest@gmail.com",
+    "password": "$2a$10$dlA7gGdNtnMF5JWzHpCWwO6rrRBMJmkgRdgtIenjwnGZT2LxLPZCW",
+    "roles": [
+      {
+        "id": 1,
+        "name": "USER"
+      }
+    ],
+    "reviews": []
+  }
+]
