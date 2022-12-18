@@ -10,17 +10,11 @@ public class Trip {
     @Id
     @GeneratedValue
     private Long id;
-
     private final String title;
-
     private final String description;
-
     private double price;
-
     private String duration;
-
     private String availability;
-
     private Double rating;
 
     @Relationship(type = "REVIEWED", direction = Relationship.Direction.INCOMING)

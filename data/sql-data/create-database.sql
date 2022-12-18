@@ -53,12 +53,12 @@ INSERT INTO `trips` VALUES (4, 'tbd', 200.00, 'Between 3-4 hours', 'Metropolitan
 INSERT INTO `trips` VALUES (5, 'tbd', 299.99, 'Around 2 hours', 'Knossos archeologial site', 'Tuesday & Thursday between 10-21', 6, 3);
 
 CREATE TABLE `users` (
-                         `id` INT NOT NULL AUTO_INCREMENT,
-                         `email` VARCHAR(255) NOT NULL,
-                         `password` VARCHAR(255) NOT NULL,
-                         `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-                         PRIMARY KEY (`id`),
-                         UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(255) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE
 ) ENGINE=InnoDB AUTO_INCREMENT = 7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `users` VALUES (1, 'admin123@gmail.com', '12345', CURRENT_TIMESTAMP);

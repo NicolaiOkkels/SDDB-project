@@ -1,0 +1,88 @@
+[
+  {
+    "id": 1,
+    "description": "tbd",
+    "price": 150.00,
+    "duration": "Between 1-2 hours",
+    "title": "The little mermaid in Copenhagen",
+    "availability": "everyday",
+    "ratingTotal": 4.0,
+    "reviews": [
+      {
+        "id": 3,
+        "title": "Hyggelig tur til københavn",
+        "rating": 5,
+        "visitDate": "2022-04-20T22:00:00.000+00:00",
+        "text": "tbd"
+      }
+    ],
+    "tags": []
+  },
+  {
+    "id": 2,
+    "description": "tbd",
+    "price": 75.00,
+    "duration": "Between 1-2 hours",
+    "title": "The statue of liberty",
+    "availability": "everyday",
+    "ratingTotal": 1.0,
+    "reviews": [
+      {
+        "id": 1,
+        "title": "Super exciting tour in New York",
+        "rating": 5,
+        "visitDate": "2020-04-30T22:00:00.000+00:00",
+        "text": "We got picked up at the hotel by the guide....tbd"
+      },
+      {
+        "id": 2,
+        "title": "Worst trip ever, would not recommend",
+        "rating": 2,
+        "visitDate": "2022-04-30T22:00:00.000+00:00",
+        "text": "the guide was bad"
+      }
+    ],
+    "tags": []
+  },
+  {
+    "id": 3,
+    "description": "tbd",
+    "price": 0.00,
+    "duration": "1 hour",
+    "title": "Central Park",
+    "availability": "everyday",
+    "ratingTotal": 1.0,
+    "reviews": [],
+    "tags": []
+  },
+  {
+    "id": 4,
+    "description": "tbd",
+    "price": 200.00,
+    "duration": "Between 3-4 hours",
+    "title": "Metropolitan Museum of Art",
+    "availability": "All days exept Wednesday, from 10-17 on weekdays & 10-21 Friday, Saturday",
+    "ratingTotal": 1.0,
+    "reviews": [],
+    "tags": []
+  },
+  {
+    "id": 5,
+    "description": "tbd",
+    "price": 299.99,
+    "duration": "Around 2 hours",
+    "title": "Knossos archeologial site",
+    "availability": "Tuesday & Thursday between 10-21",
+    "ratingTotal": 6.0,
+    "reviews": [
+      {
+        "id": 4,
+        "title": "Exceptional tour to knossos",
+        "rating": 4,
+        "visitDate": "2021-04-10T22:00:00.000+00:00",
+        "text": "tbd"
+      }
+    ],
+    "tags": []
+  }
+]
