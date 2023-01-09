@@ -1,7 +1,7 @@
-package com.sd22.datasource.mongodb.controllers;
+package com.sd22.datasource.mongodb.controller;
 
-import com.sd22.datasource.mongodb.entities.Trip;
-import com.sd22.datasource.mongodb.services.TripMongoDBService;
+import com.sd22.datasource.mongodb.entity.Trip;
+import com.sd22.datasource.mongodb.service.TripMongoDBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//@CrossOrigin(origins = "http://localhost:8081")
+
 @RestController
-@RequestMapping("/apimongo")
+@RequestMapping("/rest/mongo")
 public class TripMongoDBController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class TripMongoDBController {
         this.tripMongoDBService = tripMongoDBService;
     }
 
-    @GetMapping("/tripsmongo")
+    @GetMapping("/trips")
     public ResponseEntity<List<Trip>> getAllTrips() {
         try {
             List<Trip> trips = new ArrayList<>();
@@ -39,7 +39,7 @@ public class TripMongoDBController {
         }
     }
 
-    @PostMapping("/tripsmongo")
+    @PostMapping("/trips")
     public ResponseEntity<Trip> addTrip(@RequestBody Trip trip) {
         try {
             Trip tripSaved = tripMongoDBService.save(trip);
