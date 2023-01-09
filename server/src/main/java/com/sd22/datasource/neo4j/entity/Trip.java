@@ -17,8 +17,8 @@ public class Trip {
     private String availability;
     private Double rating;
 
-    @Relationship(type = "REVIEWED", direction = Relationship.Direction.INCOMING)
-    private List<Review> reviews;
+    //@Relationship(type = "REVIEWED", direction = Relationship.Direction.INCOMING)
+    //private List<Review> reviews;
 
     @Relationship(type = "TAGGED", direction = Relationship.Direction.INCOMING)
     private List<Tag> tags;
@@ -76,6 +76,7 @@ public class Trip {
         this.rating = rating;
     }
 
+/*
     public List<Review> getReviews() {
         return reviews;
     }
@@ -83,6 +84,7 @@ public class Trip {
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
     }
+*/
 
     public List<Tag> getTags() {
         return tags;

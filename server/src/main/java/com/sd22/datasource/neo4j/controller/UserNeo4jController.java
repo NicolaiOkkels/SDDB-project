@@ -1,4 +1,5 @@
 package com.sd22.datasource.neo4j.controller;
+import com.sd22.datasource.neo4j.entity.Review;
 import com.sd22.datasource.neo4j.entity.User;
 import com.sd22.datasource.neo4j.service.UserNeo4jService;
 import org.springframework.web.bind.annotation.*;
@@ -37,13 +38,18 @@ public class UserNeo4jController {
     }
 
     @PostMapping("/users")
-    public User createTrip(@RequestParam User user){
+    public User createUser(@RequestBody User user){
         return userNeo4jService.save(user);
     }
 
     @DeleteMapping("/delete")
-    public String deleteTrip(@RequestParam("id") String id){
+    public String deleteUser(@RequestParam("id") String id){
         userNeo4jService.delete(Long.parseLong(id));
         return "User deleted successfully";
+    }
+
+    @PutMapping("/update")
+    public User update(@RequestBody User user) {
+        return userNeo4jService.save(user);
     }
 }

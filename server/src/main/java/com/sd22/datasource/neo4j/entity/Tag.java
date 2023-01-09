@@ -2,6 +2,8 @@ package com.sd22.datasource.neo4j.entity;
 
 import org.springframework.data.neo4j.core.schema.*;
 
+import java.util.List;
+
 @Node
 public class Tag {
 
@@ -9,10 +11,13 @@ public class Tag {
     @GeneratedValue
     private Long id;
 
-    private final String name;
+    private String name;
 
     public Tag(String name) {
         this.name = name;
+    }
+
+    public Tag() {
     }
 
     public Long getId() {

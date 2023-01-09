@@ -1,4 +1,5 @@
 package com.sd22.datasource.neo4j.controller;
+import com.sd22.datasource.neo4j.entity.Review;
 import com.sd22.datasource.neo4j.entity.Trip;
 import com.sd22.datasource.neo4j.service.TripNeo4jService;
 import org.springframework.web.bind.annotation.*;
@@ -32,12 +33,17 @@ public class TripNeo4jController {
     }
 
     @PostMapping("/trips")
-    public Trip createTrip(@RequestParam Trip trip){
+    public Trip createTrip(@RequestBody Trip trip){
         return tripNeo4jService.save(trip);
     }
 
     @DeleteMapping("/delete")
     public void deleteTrip(@RequestParam("id") String id){
         tripNeo4jService.delete(Long.parseLong(id));
+    }
+
+    @PutMapping("/update")
+    public Trip update(@RequestBody Trip trip) {
+        return tripNeo4jService.save(trip);
     }
 }
