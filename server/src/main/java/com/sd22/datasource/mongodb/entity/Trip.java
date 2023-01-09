@@ -1,14 +1,18 @@
 package com.sd22.datasource.mongodb.entity;
 
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+@Getter
+@Setter
 @Document(collection = "trips")
 
 public class Trip {
     @Id
-    private int tripId;
+    private String tripId;
     private String description;
     private double price;
     private String length;
@@ -16,11 +20,11 @@ public class Trip {
     private String availabilty;
     private Double ratingTotal;
 
-    public int getTripId() {
+    public String getTripId() {
         return tripId;
     }
 
-    public void setTripId(int tripId) {
+    public void setTripId(String tripId) {
         this.tripId = tripId;
     }
 

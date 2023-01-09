@@ -30,7 +30,7 @@ public class Trip {
     @JsonBackReference
     private Location location;
 
-    @OneToMany(mappedBy = "trip", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "trip", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private List<Review> reviews;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
