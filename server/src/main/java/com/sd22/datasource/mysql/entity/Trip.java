@@ -33,7 +33,7 @@ public class Trip {
     @OneToMany(mappedBy = "trip", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private List<Review> reviews;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(
             name = "trip_tags",
             joinColumns = @JoinColumn(name = "trip_id"),

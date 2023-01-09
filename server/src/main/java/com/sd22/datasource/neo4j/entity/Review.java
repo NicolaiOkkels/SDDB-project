@@ -2,6 +2,8 @@ package com.sd22.datasource.neo4j.entity;
 
 import org.springframework.data.neo4j.core.schema.*;
 
+import java.util.List;
+
 @Node
 public class Review {
 
@@ -15,6 +17,9 @@ public class Review {
 
     @Relationship(type = "WROTE", direction = Relationship.Direction.INCOMING)
     private User user;
+
+    @Relationship(type = "REVIEWED", direction = Relationship.Direction.INCOMING)
+    private Trip trip;
 
     public Review(String title, double rating, String text) {
         this.title = title;
@@ -68,5 +73,13 @@ public class Review {
 
     public void setVisit(String visit) {
         this.visit = visit;
+    }
+
+    public Trip getTrip() {
+        return trip;
+    }
+
+    public void setTrip(Trip trip) {
+        this.trip = trip;
     }
 }

@@ -8,7 +8,10 @@ public class Role {
     @GeneratedValue
     private Long id;
 
-    private final String name;
+    private String name;
+
+    public Role() {
+    }
 
     public Role(String name) {
         this.name = name;

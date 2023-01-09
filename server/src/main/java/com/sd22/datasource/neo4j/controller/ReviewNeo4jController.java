@@ -2,6 +2,8 @@ package com.sd22.datasource.neo4j.controller;
 
 import com.sd22.datasource.neo4j.service.ReviewNeo4jService;
 import com.sd22.datasource.neo4j.entity.Review;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -37,12 +39,17 @@ public class ReviewNeo4jController {
     }
 
     @PostMapping("/reviews")
-    public Review createTrip(@RequestParam Review review){
+    public Review createReview(@RequestBody Review review){
         return reviewNeo4jService.save(review);
     }
 
     @DeleteMapping("/delete")
-    public void deleteTrip(@RequestParam("id") String id){
+    public void deleteReview(@RequestParam("id") String id){
         reviewNeo4jService.delete(Long.parseLong(id));
+    }
+
+    @PutMapping("/update")
+    public Review update(@RequestBody Review review) {
+       return reviewNeo4jService.save(review);
     }
 }
